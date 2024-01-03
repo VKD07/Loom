@@ -123,6 +123,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: c5da21a68d00f1b4bbcd7293ba180b2f, type: 2}
   - {fileID: 2100000, guid: d906c091ff8fb854ba970209226cd22b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -249,6 +250,7 @@ GameObject:
   - component: {fileID: 9208306403509672434}
   - component: {fileID: 7563382059493090431}
   - component: {fileID: 4420674521424073696}
+  - component: {fileID: 2869153266376839472}
   m_Layer: 3
   m_Name: Tile
   m_TagString: Untagged
@@ -389,6 +391,22 @@ MonoBehaviour:
   - {fileID: 1319991934876856, guid: 0960ff54993854c468496aa674fd6d0a, type: 3}
   - {fileID: 1465858519211462, guid: 00f632deb10cea64eb7b04fa28f53867, type: 3}
   - {fileID: 1466339022778984, guid: f96527b626bbeb24283b5d3a1b59a54e, type: 3}
+--- !u!114 &2869153266376839472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859063591770141515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63818a0812e303f4b987ba67d101e5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileRenderes:
+  - {fileID: 3090848303877739433}
+  - {fileID: 4787850392485290356}
+  outlineSize: 1.11
 --- !u!1 &2404504937050566529
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,6 +747,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+  - {fileID: 2100000, guid: c5da21a68d00f1b4bbcd7293ba180b2f, type: 2}
   - {fileID: 2100000, guid: a16b7b85a356b7d469067849a165dcff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

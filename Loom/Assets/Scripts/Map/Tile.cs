@@ -48,6 +48,10 @@ public class Tile : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            this.enabled = false;
+        } 
     }
 
     void RandomMesh(MeshFilter objectMesh)
