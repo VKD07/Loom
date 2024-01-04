@@ -21,6 +21,10 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] GameObject[] objects;
     GameObject newTile;
     int objectPlaced;
+
+    public List<TileGenerator> neighbours;
+    RaycastHit hit;
+
     private void Awake()
     {
         RandomObjectPlacement(transform);
@@ -47,11 +51,20 @@ public class TileGenerator : MonoBehaviour
                     numberOfTiles.value++;
                 }
             }
-
         }
         else
         {
-            this.enabled = false;
+            foreach (Transform rayPoint in rayPoints)
+            {
+                Ray ray = new Ray(rayPoint.position, rayPoint.forward);
+                if (Physics.Raycast(ray, out hit, rayDistance, tileLayer))
+                {
+                    if (!neighbours.Contains(hit.transform.GetComponent<TileGenerator>()))
+                    {
+                        neighbours.Add(hit.transform.GetComponent<TileGenerator>());
+                    }
+                }
+            }
         }
     }
 
@@ -102,6 +115,12 @@ public class TileGenerator : MonoBehaviour
             // objectPlacements.RemoveAt(randomPosIndex);
             objectPlaced++;
         }
+    }
+
+    public float GetDistanceToTarget(Transform target)
+    {
+        float distance = Vector3.Distance(transform.position, target.position);
+        return distance;
     }
 
     private void OnDrawGizmos()

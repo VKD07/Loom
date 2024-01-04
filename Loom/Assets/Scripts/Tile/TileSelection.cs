@@ -12,6 +12,7 @@ public class TileSelection : MonoBehaviour
 
     //Player Selection
     TileRandomEntitySpawner tileRandomEntitySpawner;
+    PathFinding pathFinding;
 
     [Header("On Tile Spawn")]
     public MMFeedbacks onSpawned;
@@ -25,6 +26,7 @@ public class TileSelection : MonoBehaviour
     {
         onSpawned?.PlayFeedbacks();
         tileRandomEntitySpawner = GetComponent<TileRandomEntitySpawner>();
+        pathFinding = FindObjectOfType<PathFinding>();
     }
     private void Update()
     {
@@ -46,7 +48,8 @@ public class TileSelection : MonoBehaviour
     {
         OnHoverFeedback.enabled = false;
         onSelection?.PlayFeedbacks();
-        TurnBaseManager.instance.SetPlayerDataMaterial(tileRandomEntitySpawner.GetChosenEntity().materialType, tileRandomEntitySpawner.GetChosenEntity().materialAmount);
+        //TurnBaseManager.instance.SetPlayerDataMaterial(tileRandomEntitySpawner.GetChosenEntity().materialType, tileRandomEntitySpawner.GetChosenEntity().materialAmount);
+        pathFinding.FindPath(transform);
     }
 
     public void EnableOutline()
