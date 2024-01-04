@@ -10,6 +10,9 @@ public class TileSelection : MonoBehaviour
     float maxOutlineTime = .05f;
     float currentOutlineTime;
 
+    //Player Selection
+    TileRandomEntitySpawner tileRandomEntitySpawner;
+
     [Header("On Tile Spawn")]
     public MMFeedbacks onSpawned;
     [Header("On Tile Spawn")]
@@ -21,6 +24,7 @@ public class TileSelection : MonoBehaviour
     private void OnEnable()
     {
         onSpawned?.PlayFeedbacks();
+        tileRandomEntitySpawner = GetComponent<TileRandomEntitySpawner>();
     }
     private void Update()
     {
@@ -42,6 +46,7 @@ public class TileSelection : MonoBehaviour
     {
         OnHoverFeedback.enabled = false;
         onSelection?.PlayFeedbacks();
+        TurnBaseManager.instance.SetPlayerDataMaterial(tileRandomEntitySpawner.GetChosenEntity().materialType, tileRandomEntitySpawner.GetChosenEntity().materialAmount);
     }
 
     public void EnableOutline()
@@ -49,7 +54,7 @@ public class TileSelection : MonoBehaviour
         foreach (Renderer renderer in tileRenderes)
         {
             OnHoverFeedback?.PlayFeedbacks();
-            Material tileMat = renderer.materials[0];
+            UnityEngine.Material tileMat = renderer.materials[0];
             tileMat.SetFloat("_Scale", outlineSize);
         }
         currentOutlineTime = 0;
@@ -60,7 +65,7 @@ public class TileSelection : MonoBehaviour
         foreach (Renderer renderer in tileRenderes)
         {
             UnHoverFeedback?.PlayFeedbacks();
-            Material tileMat = renderer.materials[0];
+            UnityEngine.Material tileMat = renderer.materials[0];
             tileMat.SetFloat("_Scale", 0);
         }
         OnHoverFeedback.enabled = true;

@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 950618019}
   - component: {fileID: 950618018}
   - component: {fileID: 950618020}
+  - component: {fileID: 950618021}
   m_Layer: 0
   m_Name: === Game Managers ===
   m_TagString: Untagged
@@ -490,6 +491,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   selectedtile: {fileID: 0}
+--- !u!114 &950618021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950618017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cfb9b24dc1ec64394c2866e19ec109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerJoinedList: {fileID: 11400000, guid: dead2d994d7075940b9d35f7077614a3, type: 2}
 --- !u!1001 &1777433070
 PrefabInstance:
   m_ObjectHideFlags: 0

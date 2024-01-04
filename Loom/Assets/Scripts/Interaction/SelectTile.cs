@@ -30,7 +30,6 @@ public class SelectTile : MonoBehaviour
             tileSelection.EnableOutline();
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Debug.Log("Selected");
                 tileSelection.SelectTile();
             }
         }
