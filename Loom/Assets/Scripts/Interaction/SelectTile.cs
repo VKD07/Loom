@@ -26,9 +26,12 @@ public class SelectTile : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f, tileLayer))
         {
             selectedtile = hit.transform.gameObject;
-            selectedtile.GetComponent<TileOutlineSelection>().EnableOutline();
-            if (Input.GetMouseButtonDown(0))
+            TileSelection tileSelection = selectedtile.GetComponent<TileSelection>();
+            tileSelection.EnableOutline();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                Debug.Log("Selected");
+                tileSelection.SelectTile();
             }
         }
     }
