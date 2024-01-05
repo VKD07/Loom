@@ -10,11 +10,11 @@ public class PathFinding : MonoBehaviour
     [SerializeField] Transform rayOrigin;
     [SerializeField] LayerMask tileLayer;
     [SerializeField] float rayCastLength = 10f;
-    RaycastHit hit;
-    public TileGenerator initTile;
     public List<Transform> path;
+    /*[HideInInspector]*/ public TileGenerator currentTileStanding;
     int currentIndex = 0;
     bool hasMoved;
+    RaycastHit hit;
 
     PlayerDataManager playerDataManager;
     void Start()
@@ -24,7 +24,7 @@ public class PathFinding : MonoBehaviour
 
     void Update()
     {
-        if (playerDataManager.playerData.playersTurn) //Player can move if its the players turn
+        if (playerDataManager.playerData.playersTurn) //Player can move if it is turn to play
         {
             MoveThroughPathPoints();
         }
@@ -35,27 +35,28 @@ public class PathFinding : MonoBehaviour
 
         path.Clear();
 
+        //if target pos has TileGenerator script
         if (!targetPos.TryGetComponent(out TileGenerator targetTile))
         {
             Debug.LogError("Target position doesn't have TileGenerator component.");
             return;
         }
 
-        TileGenerator currentTile = initTile;
+        //initial current tile is tile chosing in the beginning of the game
+        TileGenerator currentTile = currentTileStanding;
 
         int maxIterations = 1000;
         int iterations = 0;
 
         while (currentTile != null && iterations < maxIterations)
         {
-            if (currentTile == targetTile)
+            if (currentTile == targetTile) //if current tile script is equal to the target tile
             {
-                Debug.Log("PathFound");
                 return;
             }
 
             TileGenerator nextTile = null;
-            float lowestDistance = float.MaxValue;
+            float lowestDistance = float.MaxValue; //initial lowest distance always at max val
 
             // Find the neighbor with the lowest distance to the target
             foreach (TileGenerator neighbor in currentTile.neighbours)
@@ -74,8 +75,8 @@ public class PathFinding : MonoBehaviour
                 break;
             }
 
-            path.Add(nextTile.transform.Find("IslandVisual").transform);
-            currentTile = nextTile;
+            path.Add(nextTile.transform.Find("IslandVisual").transform); //creating a path if lowest distance is found
+            currentTile = nextTile; //setting the current tile to the lowest distance tile
             iterations++;
         }
 
@@ -90,7 +91,7 @@ public class PathFinding : MonoBehaviour
         Ray ray = new Ray(rayOrigin.position, -rayOrigin.transform.up);
         if (Physics.Raycast(ray, out hit, rayCastLength, tileLayer))
         {
-            initTile = hit.transform.GetComponent<TileGenerator>();
+            currentTileStanding = hit.transform.GetComponent<TileGenerator>();
         }
     }
 
@@ -111,12 +112,16 @@ public class PathFinding : MonoBehaviour
         }
         else
         {
+            ///Enabling Search Button and Disabling Move Button after Player has moved
             if (hasMoved)
             {
                 hasMoved = false;
                 ActionUIManager.instance?.SetActivateMoveButton(false);
                 ActionUIManager.instance?.SetActiveSearchButton(true);
                 ActionUIManager.instance?.SetActionPanelActive(true);
+
+                //to store new tile that player is current standing on (I do this for the search btn)
+                CheckTileOnGround();
             }
 
             currentIndex = 0;

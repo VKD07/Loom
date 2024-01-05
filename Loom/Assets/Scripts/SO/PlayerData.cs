@@ -9,7 +9,8 @@ public class PlayerData : ScriptableObject
     public bool playersTurn;
     public int playerNumber;
     public float playerHealth;
-    [HideInInspector] public PathFinding playerPathFinding;
+
+    [HideInInspector] public GameObject playerObj;
 
     [Header("Materials")]
     public int wood;

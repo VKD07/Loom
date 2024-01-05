@@ -44,7 +44,7 @@ public class SelectTile : MonoBehaviour
 
     Transform GetCurrentPlayerTransform()
     {
-        Transform currentPlayerTransform = turnBaseManager.currentPlayerPlaying.playerPathFinding.transform;
+        Transform currentPlayerTransform = turnBaseManager.currentPlayerPlaying.playerObj.transform;
         currentPlayer = currentPlayerTransform;
         return currentPlayerTransform;
     }

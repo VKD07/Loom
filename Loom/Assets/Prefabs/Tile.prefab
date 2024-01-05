@@ -1139,6 +1139,7 @@ MonoBehaviour:
   - {fileID: 1319991934876856, guid: 0960ff54993854c468496aa674fd6d0a, type: 3}
   - {fileID: 1465858519211462, guid: 00f632deb10cea64eb7b04fa28f53867, type: 3}
   - {fileID: 1466339022778984, guid: f96527b626bbeb24283b5d3a1b59a54e, type: 3}
+  neighbours: []
 --- !u!114 &2869153266376839472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,6 +1156,7 @@ MonoBehaviour:
   - {fileID: 3090848303877739433}
   - {fileID: 4787850392485290356}
   outlineSize: 1.11
+  pathFinding: {fileID: 0}
   onSpawned: {fileID: 4255055016202043768}
   onSelection: {fileID: 8870535468637093393}
   OnHoverFeedback: {fileID: 1522047203596293428}
@@ -1173,8 +1175,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfEntites:
   - {fileID: 11400000, guid: 64c17fe52b1aa094aa43d1326cf577d4, type: 2}
-  randomEntityType: 0
-  randomEntityId: 0
+  - {fileID: 11400000, guid: 4e4e4789958674e4080064294eb44fbf, type: 2}
+  - {fileID: 11400000, guid: 8f27d8ae30b908d47a812202d3bf7aa5, type: 2}
+  - {fileID: 11400000, guid: 64c17fe52b1aa094aa43d1326cf577d4, type: 2}
+  entityChosen: {fileID: 0}
   materialAmount: 0
   materialName: 
 --- !u!1 &2280435002911110440

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e6f0bac6ba3684f9935f785f44a628, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  entityType: 1
+  materialType: 1
   materialName: Wood
   materialAmount: 3

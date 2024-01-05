@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(TurnBaseManager))]
 [RequireComponent(typeof(SelectTile))]
+[RequireComponent(typeof(EntityHandler))]
 public class ActionUIManager : MonoBehaviour
 {
     public static ActionUIManager instance;
@@ -17,7 +18,7 @@ public class ActionUIManager : MonoBehaviour
 
     TurnBaseManager turnBaseManager;
     SelectTile selectTile;
-
+    EntityHandler entityHandler;
     private void Awake()
     {
         if (instance == null)
@@ -34,8 +35,11 @@ public class ActionUIManager : MonoBehaviour
     private void Start()
     {
         endTurnBtn.gameObject.SetActive(false);
+
         turnBaseManager = GetComponent<TurnBaseManager>();
         selectTile = GetComponent<SelectTile>();
+        entityHandler = GetComponent<EntityHandler>();
+
         selectTile.enabled = false;
         ButtonListeners();
     }
@@ -47,7 +51,7 @@ public class ActionUIManager : MonoBehaviour
 
     private void UpdateTxt()
     {
-        currentPlayerPlayingTxt.SetText(turnBaseManager.currentPlayerPlaying.playerPathFinding.gameObject.name);
+        currentPlayerPlayingTxt.SetText(turnBaseManager.currentPlayerPlaying.playerObj.name);
     }
 
     void ButtonListeners()
@@ -77,6 +81,13 @@ public class ActionUIManager : MonoBehaviour
         SetActivateMoveButton(true);
         SetActionPanelActive(false);
         SetActiveEndTurnButton(true);
+
+        //Get the entity from tile
+        TileGenerator currentTile = turnBaseManager.currentPlayerPlaying.playerObj.GetComponent<PathFinding>().currentTileStanding;
+        TileRandomEntitySpawner tileRandomEntitySpawner = currentTile.GetComponent<TileRandomEntitySpawner>();
+
+        //Set the entity to the entity handler script
+        entityHandler.HandleEntity(tileRandomEntitySpawner.GetChosenEntity(), tileRandomEntitySpawner);
     }
 
     public void SetActiveSearchButton(bool value)
@@ -85,7 +96,7 @@ public class ActionUIManager : MonoBehaviour
     }
     #endregion
 
-    #region EndButton
+    #region End Turn Button
 
     void EndTurnButton()
     {
@@ -111,5 +122,4 @@ public class ActionUIManager : MonoBehaviour
         SetActiveEndTurnButton(false);
         SetActionPanelActive(true);
     }
-
 }

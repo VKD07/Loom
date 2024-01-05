@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     public PlayerData playerData;
-
-    PathFinding pathFinding;
+    GameObject player;
 
     private void Awake()
     {
-        pathFinding = GetComponent<PathFinding>();
-        playerData.playerPathFinding = pathFinding;
+        //Storing player game object to player data
+        player = gameObject;
+        playerData.playerObj = gameObject;
     }
 }

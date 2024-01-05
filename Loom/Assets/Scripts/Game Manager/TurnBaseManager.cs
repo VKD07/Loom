@@ -55,22 +55,6 @@ public class TurnBaseManager : MonoBehaviour
 
     public PathFinding GetCurrentPlayerPathFindingScript()
     {
-        return currentPlayerPlaying.playerPathFinding;
-    }
-
-    public void SetPlayerDataMaterial(MaterialType materialType, int amount)
-    {
-        switch (materialType)
-        {
-            case MaterialType.Wood:
-                playerJoinedList.playerData[currentPlayerIndex].wood += amount;
-                break;
-            case MaterialType.Iron:
-                playerJoinedList.playerData[currentPlayerIndex].iron += amount;
-                break;
-            case MaterialType.Diamond:
-                playerJoinedList.playerData[currentPlayerIndex].Diamond += amount;
-                break;
-        }
+        return currentPlayerPlaying.playerObj.GetComponent<PathFinding>();
     }
 }

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e6f0bac6ba3684f9935f785f44a628, type: 3}
-  m_Name: Iron
+  m_Script: {fileID: 11500000, guid: 52324b708fcc9754dbfba7a120843a6d, type: 3}
+  m_Name: Smite
   m_EditorClassIdentifier: 
-  materialType: 2
-  materialName: Iron
-  materialAmount: 2

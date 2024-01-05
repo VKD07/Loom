@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e6f0bac6ba3684f9935f785f44a628, type: 3}
-  m_Name: Iron
+  m_Script: {fileID: 11500000, guid: 36f702667219ac344b22460c4587f835, type: 3}
+  m_Name: PowerUp_List
   m_EditorClassIdentifier: 
-  materialType: 2
-  materialName: Iron
-  materialAmount: 2
+  entities:
+  - {fileID: 11400000, guid: 3b42c64ef2f4a194d8a7f0b794a19f1d, type: 2}
