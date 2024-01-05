@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerDataManager))]
 public class PathFinding : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 3f;
@@ -13,25 +14,21 @@ public class PathFinding : MonoBehaviour
     public TileGenerator initTile;
     public List<Transform> path;
     int currentIndex = 0;
+    bool hasMoved;
+
+    PlayerDataManager playerDataManager;
     void Start()
     {
-
+        playerDataManager = GetComponent<PlayerDataManager>();
     }
 
     void Update()
     {
-        MoveThroughPathPoints();
-    }
-
-    private void CheckTileOnGround()
-    {
-        Ray ray = new Ray(rayOrigin.position, -rayOrigin.transform.up);
-        if (Physics.Raycast(ray, out hit, rayCastLength, tileLayer))
+        if (playerDataManager.playerData.playersTurn) //Player can move if its the players turn
         {
-            initTile = hit.transform.GetComponent<TileGenerator>();
+            MoveThroughPathPoints();
         }
     }
-
     public void FindPath(Transform targetPos)
     {
         CheckTileOnGround();
@@ -88,6 +85,15 @@ public class PathFinding : MonoBehaviour
         }
     }
 
+    private void CheckTileOnGround()
+    {
+        Ray ray = new Ray(rayOrigin.position, -rayOrigin.transform.up);
+        if (Physics.Raycast(ray, out hit, rayCastLength, tileLayer))
+        {
+            initTile = hit.transform.GetComponent<TileGenerator>();
+        }
+    }
+
     void MoveThroughPathPoints()
     {
         if (path.Count <= 0) { return; }
@@ -99,9 +105,20 @@ public class PathFinding : MonoBehaviour
             {
                 currentIndex++;
             }
+
+            hasMoved = true;
+            ActionUIManager.instance?.SetActionPanelActive(false);
         }
         else
         {
+            if (hasMoved)
+            {
+                hasMoved = false;
+                ActionUIManager.instance?.SetActivateMoveButton(false);
+                ActionUIManager.instance?.SetActiveSearchButton(true);
+                ActionUIManager.instance?.SetActionPanelActive(true);
+            }
+
             currentIndex = 0;
             path.Clear();
         }
@@ -110,13 +127,13 @@ public class PathFinding : MonoBehaviour
     void RotateTowardsDirection(Vector3 target)
     {
         Vector3 direction = target - transform.position;
-        Quaternion rotation =  Quaternion.LookRotation(direction);
+        Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = rotation;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(rayOrigin.position, -rayOrigin.transform.up * rayCastLength);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawLine(rayOrigin.position, -rayOrigin.transform.up * rayCastLength);
+    //}
 }

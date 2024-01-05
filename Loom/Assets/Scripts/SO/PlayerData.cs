@@ -6,8 +6,10 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Player Info")]
+    public bool playersTurn;
     public int playerNumber;
     public float playerHealth;
+    [HideInInspector] public PathFinding playerPathFinding;
 
     [Header("Materials")]
     public int wood;
@@ -16,6 +18,7 @@ public class PlayerData : ScriptableObject
 
     private void OnDisable()
     {
+        playersTurn = false;
         wood = 0;
         iron = 0;
         Diamond = 0;

@@ -7,7 +7,8 @@ public class TurnBaseManager : MonoBehaviour
     public static TurnBaseManager instance;
 
     [SerializeField] PlayerJoinedList playerJoinedList;
-    public int currentPlayerPlaying;
+    int currentPlayerIndex;
+    public PlayerData currentPlayerPlaying;
 
     private void Awake()
     {
@@ -21,18 +22,54 @@ public class TurnBaseManager : MonoBehaviour
             return;
         }
     }
+
+    private void Start()
+    {
+        currentPlayerPlaying = playerJoinedList.playerData[0];
+        currentPlayerPlaying.playersTurn = true;
+    }
+
+    public void NextPlayer()
+    {
+        if (currentPlayerIndex < playerJoinedList.playerData.Length -1)
+        {
+            currentPlayerIndex++;
+        }
+        else
+        {
+            currentPlayerIndex = 0;
+        }
+        EnableSpecificPlayerToPlay();
+    }
+
+    void EnableSpecificPlayerToPlay()
+    {
+        foreach (PlayerData player in playerJoinedList.playerData)
+        {
+            player.playersTurn = false;
+        }
+
+        currentPlayerPlaying = playerJoinedList.playerData[currentPlayerIndex];
+        currentPlayerPlaying.playersTurn = true;
+    }
+
+    public PathFinding GetCurrentPlayerPathFindingScript()
+    {
+        return currentPlayerPlaying.playerPathFinding;
+    }
+
     public void SetPlayerDataMaterial(MaterialType materialType, int amount)
     {
         switch (materialType)
         {
             case MaterialType.Wood:
-                playerJoinedList.playerData[currentPlayerPlaying].wood += amount;
+                playerJoinedList.playerData[currentPlayerIndex].wood += amount;
                 break;
             case MaterialType.Iron:
-                playerJoinedList.playerData[currentPlayerPlaying].iron += amount;
+                playerJoinedList.playerData[currentPlayerIndex].iron += amount;
                 break;
             case MaterialType.Diamond:
-                playerJoinedList.playerData[currentPlayerPlaying].Diamond += amount;
+                playerJoinedList.playerData[currentPlayerIndex].Diamond += amount;
                 break;
         }
     }

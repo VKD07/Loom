@@ -12,7 +12,7 @@ public class TileSelection : MonoBehaviour
 
     //Player Selection
     TileRandomEntitySpawner tileRandomEntitySpawner;
-    PathFinding pathFinding;
+    public PathFinding pathFinding;
 
     [Header("On Tile Spawn")]
     public MMFeedbacks onSpawned;
@@ -21,12 +21,11 @@ public class TileSelection : MonoBehaviour
     [Header("On Tile Spawn")]
     public MMFeedbacks OnHoverFeedback;
     public MMFeedbacks UnHoverFeedback;
-    
+
     private void OnEnable()
     {
         onSpawned?.PlayFeedbacks();
         tileRandomEntitySpawner = GetComponent<TileRandomEntitySpawner>();
-        pathFinding = FindObjectOfType<PathFinding>();
     }
     private void Update()
     {
@@ -48,7 +47,10 @@ public class TileSelection : MonoBehaviour
     {
         OnHoverFeedback.enabled = false;
         onSelection?.PlayFeedbacks();
+
+        pathFinding = TurnBaseManager.instance.GetCurrentPlayerPathFindingScript();
         //TurnBaseManager.instance.SetPlayerDataMaterial(tileRandomEntitySpawner.GetChosenEntity().materialType, tileRandomEntitySpawner.GetChosenEntity().materialAmount);
+        ActionUIManager.instance.PlayerHasMoved();
         pathFinding.FindPath(transform);
     }
 

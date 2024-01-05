@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460eec31392c51f4d9662a82302b76d1, type: 3}
-  m_Name: PlayerJoinedList
+  m_Script: {fileID: 11500000, guid: f417c54fbe0570b408337d4ce0cc2e39, type: 3}
+  m_Name: SetUIActionPanel
   m_EditorClassIdentifier: 
-  playerData:
-  - {fileID: 11400000, guid: dda50e3efc88d1a4da20e06b1bfd704b, type: 2}
-  - {fileID: 11400000, guid: e7dc835ed7c08e64687545ad80c6f97a, type: 2}
+  value: 0
