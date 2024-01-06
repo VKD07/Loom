@@ -8,7 +8,20 @@ using UnityEngine;
 public class Enemy : ScriptableObject
 {
     public Sprite enemyImage;
+    public GameObject enemyPrefab;
     public string EnemyName;
     public float health;
     public float damage;
+
+    //initial Values
+    float initHealth;
+    private void OnEnable()
+    {
+        initHealth = health;
+    }
+
+    private void OnDisable()
+    {
+        health = initHealth;
+    }
 }

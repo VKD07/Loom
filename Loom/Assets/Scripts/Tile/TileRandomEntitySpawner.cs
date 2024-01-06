@@ -11,7 +11,8 @@ public class TileRandomEntitySpawner : MonoBehaviour
     int randomEntityType;
     int randomEntityId;
     public ScriptableObject entityChosen;
-
+    [SerializeField] Transform monsterSpawner;
+    [HideInInspector] public GameObject monsterSpawned;
     /// <summary>
     /// Material properties
     /// </summary>
@@ -23,7 +24,7 @@ public class TileRandomEntitySpawner : MonoBehaviour
         RandomizeEntity();
     }
 
-     void RandomizeEntity()
+    void RandomizeEntity()
     {
         randomEntityType = UnityEngine.Random.Range(0, listOfEntites.Length);
         randomEntityId = UnityEngine.Random.Range(0, listOfEntites[randomEntityType].entities.Length);
@@ -50,19 +51,19 @@ public class TileRandomEntitySpawner : MonoBehaviour
         Enemy enemy = entityChosen as Enemy;
         PowerUps powerUps = entityChosen as PowerUps;
 
-        if(material != null)
+        if (material != null)
         {
             print("Material Chosen");
             return EntityType.Material;
-        }else if(enemy != null)
+        }
+        else if (enemy != null)
         {
             print("Enemy Chosen");
-
             return EntityType.Enemy;
-        }else if(powerUps != null)
+        }
+        else if (powerUps != null)
         {
             print("Power Up Chosen");
-
             return EntityType.PowerUp;
         }
         return EntityType.None;
@@ -82,6 +83,43 @@ public class TileRandomEntitySpawner : MonoBehaviour
         else
         {
             return (MaterialType.None, 0);
+        }
+    }
+
+    public EntityList GetMaterials()
+    {
+        EntityList entity = entityChosen as EntityList;
+        return entity;
+    }
+
+    public Enemy GetEnemy()
+    {
+        Enemy enemy = entityChosen as Enemy;
+        if (enemy != null)
+        {
+            return enemy;
+        }
+        return null;
+    }
+
+    public void SpawnEnemyOnTile()
+    {
+        if (entityChosen == null) { return; }
+
+        Enemy enemyChosen = entityChosen as Enemy;
+
+        if (enemyChosen != null && monsterSpawned == null)
+        {
+            monsterSpawned = Instantiate(enemyChosen.enemyPrefab, monsterSpawner.position, Quaternion.identity);
+        }
+    }
+
+    public void DestroyEnemy()
+    {
+        if(monsterSpawned!= null)
+        {
+            Destroy(monsterSpawned);
+            monsterSpawned = null;
         }
     }
 }

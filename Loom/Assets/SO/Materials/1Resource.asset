@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b2d0bdd8ea77754d839564c26e57dad, type: 3}
-  m_Name: Ghoul
+  m_Script: {fileID: 11500000, guid: 36f702667219ac344b22460c4587f835, type: 3}
+  m_Name: 1Resource
   m_EditorClassIdentifier: 
-  enemyImage: {fileID: 0}
-  enemyPrefab: {fileID: 1467795207194870674, guid: 9fa28dd89d2f44c44b313f319f372c08,
-    type: 3}
-  EnemyName: Ghoul
-  health: 5
-  damage: 1
+  entities: []
