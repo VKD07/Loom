@@ -11,7 +11,7 @@ public class EntityHandler : MonoBehaviour
     [SerializeField] string enemySpawnPointName = "EnemySpawnPoint";
     TurnBaseManager turnBaseManager;
     public TileRandomEntitySpawner tileEntitySpawner;
-    [HideInInspector] public Enemy currentEnemy;
+    [HideInInspector] public MonsterDataManager currentEnemy;
     [HideInInspector] public Vector3 initPlayerPos;
     private void Start()
     {
@@ -28,7 +28,7 @@ public class EntityHandler : MonoBehaviour
                 //GetAllMaterialsGathered(tileEntitySpawner);
                 break;
             case EntityType.Enemy:
-                currentEnemy = tileEntitySpawner.GetEnemy();
+                currentEnemy = tileEntitySpawner.GetSpawnedMonster().GetComponent<MonsterDataManager>();
                 EnableBattleGroundWithEnemy(tileEntitySpawner.GetEnemy());
                 break;
         }
@@ -73,7 +73,7 @@ public class EntityHandler : MonoBehaviour
         currentPlayerPlaying.transform.forward = -Vector3.forward;
 
         //Transfer Monster to the battleGround
-        tileEntitySpawner.monsterSpawned.transform.position = battleGrounds[0].transform.Find(enemySpawnPointName).transform.position;
+        currentEnemy.transform.position = battleGrounds[0].transform.Find(enemySpawnPointName).transform.position;
     }
     
     public void DisableAllBattleGrounds()

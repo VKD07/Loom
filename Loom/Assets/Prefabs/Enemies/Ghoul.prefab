@@ -671,6 +671,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5312778718939816951}
   - component: {fileID: 6424879663554074919}
+  - component: {fileID: 2072461240785748118}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Untagged
@@ -725,6 +726,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2072461240785748118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467795207194870674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffa81856121edb547861cd22eb3bb808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterData: {fileID: 11400000, guid: 1e7f801a145a79e4b85538c9bf29c89a, type: 2}
+  health: 0
 --- !u!1 &1659060217174157227
 GameObject:
   m_ObjectHideFlags: 0

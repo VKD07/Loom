@@ -6,7 +6,7 @@ public class MonsterBattleManager : MonoBehaviour
 {
     public EntityHandler entityHandler;
     TurnBaseManager turnBaseManager;
-    [SerializeField] Enemy currentMonster;
+    [SerializeField] public MonsterDataManager currentMonsterData;
     [SerializeField] GameObject currentPlayerPlaying;
     void Awake()
     {
@@ -22,10 +22,10 @@ public class MonsterBattleManager : MonoBehaviour
     private void HandleBattle()
     {
         currentPlayerPlaying = turnBaseManager.currentPlayerPlaying.playerObj;
-        currentMonster = entityHandler.currentEnemy;
+        currentMonsterData = entityHandler.currentEnemy;
 
-        if (currentMonster == null) { return; }
-        if (currentMonster.health <= 0)
+        if (currentMonsterData == null) { return; }
+        if (currentMonsterData.health <= 0)
         {
             BattleEnds();
         }

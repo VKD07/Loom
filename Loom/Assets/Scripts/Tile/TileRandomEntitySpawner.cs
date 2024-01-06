@@ -114,6 +114,14 @@ public class TileRandomEntitySpawner : MonoBehaviour
         }
     }
 
+    public GameObject GetSpawnedMonster()
+    {
+        if(monsterSpawned != null) {
+            return monsterSpawned;
+        }
+        return null;
+    }
+
     public void DestroyEnemy()
     {
         if(monsterSpawned!= null)

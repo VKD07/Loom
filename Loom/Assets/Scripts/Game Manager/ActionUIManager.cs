@@ -86,7 +86,7 @@ public class ActionUIManager : MonoBehaviour
     #region Search Button
     void SearchButton()
     {
-        //Get the entity from tile
+        //Get the current tile that the current player is currently standing on
         currentTile = turnBaseManager.currentPlayerPlaying.playerObj.GetComponent<PathFinding>().currentTileStanding;
         tileRandomEntitySpawner = currentTile.GetComponent<TileRandomEntitySpawner>();
 
@@ -156,6 +156,9 @@ public class ActionUIManager : MonoBehaviour
     void Flee()
     {
         //lose -health to player
+        SetActionPanelActive(false);
+
+        SetActiveEndTurnButton(true);
     }
     public void SetActiveFleeButton(bool value)
     {

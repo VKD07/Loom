@@ -12,7 +12,6 @@ public class Enemy : ScriptableObject
     public string EnemyName;
     public float health;
     public float damage;
-
     //initial Values
     float initHealth;
     private void OnEnable()
