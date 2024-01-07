@@ -16,9 +16,10 @@ public class Dice : MonoBehaviour
     [SerializeField] float upwardForce;
     [NonReorderable]
     [SerializeField] FacesOppositeNumbers[] facesOppositeNumber;
+    public bool redDice;
     float forceX, forceY, forceZ;
     Rigidbody rb;
-    bool diceHasRolled;
+    [HideInInspector] public bool diceHasRolled;
 
     private void Awake()
     {
@@ -27,14 +28,13 @@ public class Dice : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && rb.velocity.magnitude <= 0f)
-        {
-            RollDice();
-        }
         GetTheRolledNumber();
     }
-    private void RollDice()
+    public void RollDice()
     {
+        //reset number to 0
+        numberRolled = 0;
+
         rb.AddForce(Vector3.up * upwardForce, ForceMode.Force);
 
         forceX = UnityEngine.Random.Range(0, maxAxisForce);
@@ -46,11 +46,10 @@ public class Dice : MonoBehaviour
         //Adding delay before checking the rolledNumber
         StartCoroutine(EnableDiceRoll());
     }
-    private void GetTheRolledNumber()
+    public void GetTheRolledNumber()
     {
         if (diceHasRolled && rb.velocity.magnitude <= 0f)
         {
-            print("Velocity is Zero");
             foreach (Transform face in diceFaces)
             {
                 if (Physics.CheckSphere(face.position, checkSphereRad, groundLayer))
@@ -61,7 +60,6 @@ public class Dice : MonoBehaviour
                     {
                         if (int.Parse(face.transform.name) == faceNumber.faceNumber)
                         {
-                            print($"faceName: {face.transform.name}... Face Number: {faceNumber.faceNumber}... OppositeFace: {faceNumber.faceOppositeNumber}");
                             numberRolled = faceNumber.faceOppositeNumber;
                             diceHasRolled = false;
                             break;

@@ -16,11 +16,15 @@ public class ActionUIManager : MonoBehaviour
     [SerializeField] GameObject actionUIPanel;
     [SerializeField] TextMeshProUGUI currentPlayerPlayingTxt;
     [SerializeField] Button moveBtn, searchBtn, attackBtn, battleMonsterBtn, fleeBtn, craftBtn, powerUpBtn, endTurnBtn;
+    [SerializeField] Button rollDiceBtn;
     [SerializeField] UnityEvent OnMonsterBattle;
 
+    //Game Managers
     TurnBaseManager turnBaseManager;
     SelectTile selectTile;
     EntityHandler entityHandler;
+    DiceManager diceManager;
+
     TileGenerator currentTile;
     TileRandomEntitySpawner tileRandomEntitySpawner;
     private void Awake()
@@ -40,6 +44,7 @@ public class ActionUIManager : MonoBehaviour
     {
         endTurnBtn.gameObject.SetActive(false);
 
+        diceManager = GetComponent<DiceManager>();
         turnBaseManager = GetComponent<TurnBaseManager>();
         selectTile = GetComponent<SelectTile>();
         entityHandler = GetComponent<EntityHandler>();
@@ -67,6 +72,9 @@ public class ActionUIManager : MonoBehaviour
         craftBtn.onClick.AddListener(Craft);
         powerUpBtn.onClick.AddListener(PowerUp);
         searchBtn.onClick.AddListener(SearchButton);
+
+        rollDiceBtn.onClick.AddListener(RollDice);
+
         endTurnBtn.onClick.AddListener(EndTurnButton);
     }
 
@@ -142,6 +150,7 @@ public class ActionUIManager : MonoBehaviour
     void BattleMonster()
     {
         OnMonsterBattle.Invoke();
+        SetActiveRollDiceButton(true);
         SetActionPanelActive(false);
         //Set the entity to the entity handler script
         entityHandler.HandleEntity(tileRandomEntitySpawner.GetChosenEntity(), tileRandomEntitySpawner);
@@ -186,6 +195,19 @@ public class ActionUIManager : MonoBehaviour
     public void SetActivePowerUpButtton(bool value)
     {
         powerUpBtn.gameObject.SetActive(value);
+    }
+    #endregion
+
+    #region Roll Dice Button
+    void SetActiveRollDiceButton(bool value)
+    {
+        rollDiceBtn.gameObject.SetActive(value);
+    }
+
+    void RollDice()
+    {
+        diceManager.RollDices();
+        SetActiveRollDiceButton(false);
     }
     #endregion
 
