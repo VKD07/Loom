@@ -6,10 +6,14 @@ using UnityEngine;
 public class DiceManager : MonoBehaviour
 {
     [SerializeField] Dice[] dices;
-    [SerializeField] int blueDiceNum;
-    [SerializeField] int redDiceNum;
+    [SerializeField] float battleDisableDelay = 5f;
+    public int blueDiceNum;
+    public int redDiceNum;
+    Vector3[] dicesInitPos;
     void Start()
     {
+        dicesInitPos = new Vector3[dices.Length];
+        SetInitPosFromDice();
         SetActiveDices(false);
     }
 
@@ -26,6 +30,7 @@ public class DiceManager : MonoBehaviour
         {
             dice.RollDice();
         }
+        StartCoroutine(DisableDiceDelay());
     }
 
     private void GetDicesNumber()
@@ -33,7 +38,6 @@ public class DiceManager : MonoBehaviour
         foreach (Dice dice in dices)
         {
             if (!dice.gameObject.activeSelf) { return; }
-            print("Dices has rolled");
             //Get red dice number
             if (dice.redDice)
             {
@@ -47,6 +51,14 @@ public class DiceManager : MonoBehaviour
         }
     }
 
+    #region Enabling and Disable Dice
+    IEnumerator DisableDiceDelay()
+    {
+        yield return new WaitForSeconds(battleDisableDelay);
+        SetActiveDices(false);
+        SetDiceToInitPos();
+    }
+
     public void SetActiveDices(bool value)
     {
         foreach (Dice dice in dices)
@@ -54,4 +66,23 @@ public class DiceManager : MonoBehaviour
             dice.gameObject.SetActive(value);
         }
     }
+    #endregion
+
+    #region Dice Positions
+    void SetInitPosFromDice()
+    {
+        for (int i = 0; i < dices.Length; i++)
+        {
+            dicesInitPos[i] = dices[i].transform.position;
+        }
+    }
+
+    void SetDiceToInitPos()
+    {
+        for (int i = 0; i < dices.Length; i++)
+        {
+            dices[i].transform.position = dicesInitPos[i];
+        }
+    }
+    #endregion
 }

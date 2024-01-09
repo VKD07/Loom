@@ -16,5 +16,5 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1467795207194870674, guid: 9fa28dd89d2f44c44b313f319f372c08,
     type: 3}
   EnemyName: Ghoul
-  health: 5
+  health: 20
   damage: 1

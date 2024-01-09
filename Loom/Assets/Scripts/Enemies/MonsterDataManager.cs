@@ -8,6 +8,7 @@ public class MonsterDataManager : MonoBehaviour
 {
     [SerializeField] Enemy monsterData;
     public float health;
+    public float totalDamage;
 
     private void Awake()
     {
@@ -17,12 +18,7 @@ public class MonsterDataManager : MonoBehaviour
     private void InitMonsterData()
     {
         health = monsterData.health;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        totalDamage = monsterData.damage;
     }
 
     public void ReduceHealth(float damage)

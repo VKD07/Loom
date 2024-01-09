@@ -18,9 +18,4 @@ public class Enemy : ScriptableObject
     {
         initHealth = health;
     }
-
-    private void OnDisable()
-    {
-        health = initHealth;
-    }
 }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5663625115031630586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1131388018915503000}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4554598998304625442}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Faces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938316794343527426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4830567788128237469}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2252849498640468420}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8556469578043592190}
   - component: {fileID: 4259373359793989198}
   - component: {fileID: 8000907726946322765}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dice_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,6 +318,8 @@ MonoBehaviour:
     faceOppositeNumber: 2
   - faceNumber: 6
     faceOppositeNumber: 1
+  redDice: 0
+  diceHasRolled: 0
 --- !u!65 &4259373359793989198
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -375,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480247009030452102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

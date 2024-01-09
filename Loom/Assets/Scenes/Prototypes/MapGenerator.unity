@@ -1115,7 +1115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -365.7, y: 41.8}
+  m_AnchoredPosition: {x: -365.69995, y: 41.80005}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348547530
@@ -1813,7 +1813,6 @@ GameObject:
   m_Component:
   - component: {fileID: 470302853}
   - component: {fileID: 470302856}
-  - component: {fileID: 470302855}
   - component: {fileID: 470302854}
   m_Layer: 0
   m_Name: Camera
@@ -1881,14 +1880,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &470302855
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470302852}
-  m_Enabled: 1
 --- !u!20 &470302856
 Camera:
   m_ObjectHideFlags: 0
@@ -2813,6 +2804,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  OnDiceRoll:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 950618024}
+        m_TargetAssemblyTypeName: MonsterBattleManager, Assembly-CSharp
+        m_MethodName: StartBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &950618023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2829,6 +2835,7 @@ MonoBehaviour:
   - {fileID: 1776533066}
   playerSpawnPointName: PlayerSpawnPoint
   enemySpawnPointName: EnemySpawnPoint
+  battleGroundIndex: 0
   tileEntitySpawner: {fileID: 0}
   currentEnemy: {fileID: 0}
   initPlayerPos: {x: 0, y: 0, z: 0}
@@ -2844,6 +2851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2559f4ccf6fc12b40a41734acf27097d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDelay: 4
+  transitionBackDelay: 4
   entityHandler: {fileID: 0}
   currentMonsterData: {fileID: 0}
   currentPlayerPlaying: {fileID: 0}
@@ -2862,6 +2871,7 @@ MonoBehaviour:
   dices:
   - {fileID: 1738228676}
   - {fileID: 1990462698}
+  battleDisableDelay: 3
   blueDiceNum: 0
   redDiceNum: 0
 --- !u!1001 &991491150
@@ -6572,6 +6582,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5da0ff5bac930924391bec2d63075531,
         type: 2}
+    - target: {fileID: 5923022662985479851, guid: 0361e6e00fe2a3b48aec7f3028dca822,
+        type: 3}
+      propertyPath: returnDelay
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

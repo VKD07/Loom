@@ -5,10 +5,12 @@ using UnityEngine;
 [CreateAssetMenu (fileName = "Player_", menuName = "SO/PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Player Info")]
+    [Header("Player Stats/Info")]
     public bool playersTurn;
     public int playerNumber;
     public float playerHealth;
+    public float playerDamage = 4f;
+
 
     [HideInInspector] public GameObject playerObj;
 

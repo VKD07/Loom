@@ -6,18 +6,38 @@ using UnityEngine.Events;
 
 public class EntityHandler : MonoBehaviour
 {
-    [SerializeField] GameObject[] battleGrounds;
-    [SerializeField] string playerSpawnPointName = "PlayerSpawnPoint";
-    [SerializeField] string enemySpawnPointName = "EnemySpawnPoint";
+    public static EntityHandler instance;
+
+    public GameObject[] battleGrounds;
+    public string playerSpawnPointName = "PlayerSpawnPoint";
+    public string enemySpawnPointName = "EnemySpawnPoint";
+    public int battleGroundIndex = 0;
+
     TurnBaseManager turnBaseManager;
     public TileRandomEntitySpawner tileEntitySpawner;
     [HideInInspector] public MonsterDataManager currentEnemy;
     [HideInInspector] public Vector3 initPlayerPos;
     private void Start()
     {
+        Singleton();
         turnBaseManager = GetComponent<TurnBaseManager>();
         DisableAllBattleGrounds();
     }
+
+    void Singleton()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+
     public void HandleEntity(EntityType entityType, TileRandomEntitySpawner tileEntitySpawner)
     {
         this.tileEntitySpawner = tileEntitySpawner;
@@ -64,16 +84,23 @@ public class EntityHandler : MonoBehaviour
 
     void EnableBattleGroundWithEnemy(Enemy enemy)
     {
+        battleGroundIndex = Random.Range(0, battleGrounds.Length - 1);
+
         GameObject currentPlayerPlaying = turnBaseManager.currentPlayerPlaying.playerObj;
         initPlayerPos = currentPlayerPlaying.transform.position;
         battleGrounds[0].SetActive(true);
 
         //Transfer Player to the battle ground
-        currentPlayerPlaying.transform.position = battleGrounds[0].transform.Find(playerSpawnPointName).transform.position;
+        currentPlayerPlaying.transform.position = battleGrounds[battleGroundIndex].transform.Find(playerSpawnPointName).transform.position;
         currentPlayerPlaying.transform.forward = -Vector3.forward;
 
         //Transfer Monster to the battleGround
-        currentEnemy.transform.position = battleGrounds[0].transform.Find(enemySpawnPointName).transform.position;
+        currentEnemy.transform.position = battleGrounds[battleGroundIndex].transform.Find(enemySpawnPointName).transform.position;
+    }
+
+    public Transform GetBattleGround()
+    {
+        return battleGrounds[battleGroundIndex].transform;
     }
     
     public void DisableAllBattleGrounds()

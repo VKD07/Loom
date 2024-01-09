@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(MonsterBattleManager))]
+[CustomEditor(typeof(BattleManager))]
 public class MonsterBattleManagerEditor : Editor
 {
-    MonsterBattleManager battleManager;
+    BattleManager battleManager;
     public override void OnInspectorGUI()
     {
-        this.battleManager = (MonsterBattleManager)target;
+        this.battleManager = (BattleManager)target;
         base.OnInspectorGUI();
         GUILayout.Space(20);
         KillEnemy();

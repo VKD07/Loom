@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f3d822b673ab84ebee6587cc5d5436, type: 3}
   m_Name: Player_1
   m_EditorClassIdentifier: 
+  playersTurn: 1
   playerNumber: 0
-  playerHealth: 0
+  playerHealth: 100
+  playerDamage: 4
+  playerObj: {fileID: 0}
   wood: 0
   iron: 0
   Diamond: 0

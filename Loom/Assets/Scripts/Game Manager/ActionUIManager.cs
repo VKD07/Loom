@@ -17,7 +17,10 @@ public class ActionUIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI currentPlayerPlayingTxt;
     [SerializeField] Button moveBtn, searchBtn, attackBtn, battleMonsterBtn, fleeBtn, craftBtn, powerUpBtn, endTurnBtn;
     [SerializeField] Button rollDiceBtn;
+
+    [Header("Events")]
     [SerializeField] UnityEvent OnMonsterBattle;
+    [SerializeField] UnityEvent OnDiceRoll;
 
     //Game Managers
     TurnBaseManager turnBaseManager;
@@ -199,7 +202,7 @@ public class ActionUIManager : MonoBehaviour
     #endregion
 
     #region Roll Dice Button
-    void SetActiveRollDiceButton(bool value)
+    public void SetActiveRollDiceButton(bool value)
     {
         rollDiceBtn.gameObject.SetActive(value);
     }
@@ -207,6 +210,7 @@ public class ActionUIManager : MonoBehaviour
     void RollDice()
     {
         diceManager.RollDices();
+        OnDiceRoll.Invoke();
         SetActiveRollDiceButton(false);
     }
     #endregion
